@@ -315,10 +315,15 @@ static TWTRTwitter *sharedTwitter;
 
 - (void)logInWithViewController:(UIViewController *)viewController completion:(TWTRLogInCompletion)completion
 {
+    [self logInWithViewController:viewController callbackUrlPrefix:@"" completion: completion];
+}
+
+- (void)logInWithViewController:(nullable UIViewController *)viewController callbackUrlPrefix:(NSString *)callbackUrlPrefix completion:(TWTRLogInCompletion)completion
+{
     TWTRParameterAssertOrReturn(completion);
     [self assertTwitterKitInitialized];
-
-    TWTRLoginURLParser *loginURLParser = [[TWTRLoginURLParser alloc] initWithAuthConfig:self.sessionStore.authConfig];
+    
+    TWTRLoginURLParser *loginURLParser = [[TWTRLoginURLParser alloc] initWithAuthConfig:self.sessionStore.authConfig callbackUrlPrefix:callbackUrlPrefix];
     if (![loginURLParser hasValidURLScheme]) {
         // Throws exception if the app does not have a valid scheme
         [NSException raise:TWTRInvalidInitializationException format:@"Attempt made to Log in or Like a Tweet without a valid Twitter Kit URL Scheme set up in the app settings. Please see https://dev.twitter.com/twitterkit/ios/installation for more info."];

@@ -106,6 +106,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)logInWithViewController:(nullable UIViewController *)viewController completion:(TWTRLogInCompletion)completion;
 
 /**
+ *  Triggers user authentication with Twitter. Allows the developer to specify the presenting view controller.
+ *
+ *  This method will present UI to allow the user to log in if there are no saved Twitter login credentials.
+ *
+ *  @param viewController The view controller that will be used to present the authentication view.
+ *  @param callbackUrlPrefix The callback url will be used to return from Twitter.
+ *  @param completion The completion block will be called after authentication is successful or if there is an error.
+ *  @warning This method requires that you have set up your `consumerKey` and `consumerSecret`.
+ */
+- (void)logInWithViewController:(nullable UIViewController *)viewController callbackUrlPrefix:(NSString *)callbackUrlPrefix completion:(TWTRLogInCompletion)completion;
+
+/**
  *  Finish the `SFSafariViewController` authentication loop. This method should
  *  be called from application:openURL:options inside the application delegate.
  *

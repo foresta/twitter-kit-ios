@@ -31,6 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithAuthConfig:(TWTRAuthConfig *)config;
 
+/**
+ * Create an instance with a consumer key to user for the
+ * `authRedirectScheme`.
+ */
+- (instancetype)initWithAuthConfig:(TWTRAuthConfig *)config callbackUrlPrefix:(NSString *)callbackUrlPrefix;
+
 /*
  URL scheme used to redirect back to this app part-way through
  the OAuth authentication flow.
